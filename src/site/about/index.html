@@ -28,8 +28,8 @@
 <link href="../css/theme.css" rel="stylesheet">
 <link href="../css/theme.tile_grid.css" rel="stylesheet">
 <link href="../css/theme.footer.css" rel="stylesheet">
-<!-- default color palette -->
-<link href="../css/palettes/default.css" rel="stylesheet">
+<!-- pink color palette -->
+<link href="../css/palettes/pink.css" rel="stylesheet">
 
 <!-- page layout -->
 <style>
@@ -169,71 +169,92 @@
 <nav>
     <ul>
         <li><a href="#_1">Как эта страничка сделана</a></li>
-        <li><a href="#ssh-github">Настройка ssh ключей github</a></li><li><a href="#_2">Создание репозитория</a></li><li><a href="#mkdocs">Установка mkdocs</a></li><li><a href="#_3">Создаем и первично настраиваем проект</a></li>
+        <li><a href="#ssh-github">Настройка ssh ключей github</a></li><li><a href="#_2">Создание репозитория</a></li><li><a href="#mkdocs">Установка mkdocs</a></li><li><a href="#_3">Создаем и первично настраиваем странички</a></li><li><a href="#html">Кастомизирем базовый html</a></li><li><a href="#_4">Деплоимся</a></li>
     </ul>
 </nav>
 </aside>
             <main id="terminal-mkdocs-main-content">
 <section id="mkdocs-terminal-content">
-    <h1 id="_1">Как эта страничка сделана</h1>
-<h2 id="ssh-github">Настройка ssh ключей github</h2>
-<ol>
+    <h1 id="_1">Как эта страничка сделана<a class="headerlink" href="#_1" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="ssh-github">Настройка ssh ключей github<a class="headerlink" href="#ssh-github" title="Anchor link to this section for reference">#</a></h2>
+<ul>
 <li>Генерим ключ и копируем его публичную часть</li>
-</ol>
+</ul>
 <pre><code>cd ~
 ssh-keygen -t ed25519
 cat .ssh/id_ed25519.pub
 </code></pre>
-<ol start="2">
+<ul>
 <li>Новый ssh ключ добавляем сюда https://github.com/settings/keys</li>
-</ol>
-<h2 id="_2">Создание репозитория</h2>
-<ol>
+</ul>
+<h2 id="_2">Создание репозитория<a class="headerlink" href="#_2" title="Anchor link to this section for reference">#</a></h2>
+<ul>
 <li>Создаем новый репозиторий по инструкции для User or Organization (https://pages.github.com/)</li>
-</ol>
+</ul>
 <pre><code>git clone git@github.com:bobkinstreet/bobkinstreet.github.io.git
 cd bobkinstret.github.io/
 </code></pre>
-<ol start="2">
+<ul>
 <li>Создаем index.html, коммитим изменения</li>
-</ol>
+</ul>
 <pre><code>echo &quot;Ученье свет&quot; &gt; index.html
 git add .
 git commit -m 'initial'
 git push -u origin main
 </code></pre>
-<ol start="3">
+<ul>
 <li>После этого по адресу bobkinstreet.github.io будет доступен index.html. У меня страничка стала доступная только после второго коммита.</li>
-</ol>
-<h2 id="mkdocs">Установка mkdocs</h2>
+</ul>
+<h2 id="mkdocs">Установка mkdocs<a class="headerlink" href="#mkdocs" title="Anchor link to this section for reference">#</a></h2>
 <p>Устанавливаем mkdocs и тему</p>
 <pre><code>pip install mkdocs
 pip install mkdocs-terminal
 </code></pre>
-<h2 id="_3">Создаем и первично настраиваем проект</h2>
-<ol>
-<li>Создаем проект в папке с репозиторием</li>
-</ol>
+<h2 id="_3">Создаем и первично настраиваем странички<a class="headerlink" href="#_3" title="Anchor link to this section for reference">#</a></h2>
+<ul>
+<li>Создаем проект в директории, которая содержит папку с репозиторием</li>
+</ul>
 <pre><code>cd ../
-mkdocs new ./
+mkdocs new src
 </code></pre>
-<ol start="2">
+<ul>
 <li>Первично кастомизируем mkdocs.yml</li>
-</ol>
+</ul>
 <pre><code>site_name: Бобкин стрит
 theme:
   name: terminal
+  palette: pink
 nav:
   - Домашняя: index.md
   - Об: about.md
 markdown_extensions:
-  - sane_lists
+  - def_lists
 </code></pre>
-<ol start="3">
+<ul>
 <li>Проверяем как выглядит</li>
-</ol>
+</ul>
+<pre><code>mkdocs serve --config-file ./src/mkdocs.yml
+</code></pre>
+<h2 id="html">Кастомизирем базовый html<a class="headerlink" href="#html" title="Anchor link to this section for reference">#</a></h2>
+<p><mark>не_работает</mark></p>
+<ul>
+<li>Создаем main.html https://www.mkdocs.org/user-guide/customizing-your-theme/#overriding-template-blocks</li>
+</ul>
+<pre><code>mkdir src/custom_dir
+touch src/custom_dir/footer.html
+</code></pre>
+<ul>
+<li>И наполням его</li>
+</ul>
+<pre><code>{% extends &quot;base.html&quot; %}
+
+{% block footer %}
+Кастом текст
+{% endblock %}
+</code></pre>
+<h2 id="_4">Деплоимся<a class="headerlink" href="#_4" title="Anchor link to this section for reference">#</a></h2>
 <pre><code>cd bobkinstret.github.io/
-mkdocs serve
+mkdocs gh-deploy --config-file ../src/mkdocs.yml --remote-branch main
 </code></pre>
 </section>
 
