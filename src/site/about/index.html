@@ -212,13 +212,12 @@ pip install mkdocs-terminal
 </code></pre>
 <h2 id="_3">Создаем и первично настраиваем странички<a class="headerlink" href="#_3" title="Anchor link to this section for reference">#</a></h2>
 <ul>
-<li>Создаем проект в директории, которая содержит папку с репозиторием</li>
+<li>Создаем mkdocs папку исходниками проекта прямо в репозитории в ветке main</li>
 </ul>
-<pre><code>cd ../
-mkdocs new src
+<pre><code>mkdocs new src
 </code></pre>
 <ul>
-<li>Первично кастомизируем mkdocs.yml</li>
+<li>Первично кастомизируем <a href="https://raw.githubusercontent.com/bobkinstreet/bobkinstreet.github.io/refs/heads/main/src/mkdocs.yml">mkdocs.yml</a></li>
 </ul>
 <pre><code>site_name: Бобкин стрит
 theme:
@@ -229,6 +228,7 @@ nav:
   - Об: about.md
 markdown_extensions:
   - def_lists
+# ...
 </code></pre>
 <ul>
 <li>Проверяем как выглядит</li>
@@ -253,8 +253,11 @@ touch src/custom_dir/footer.html
 {% endblock %}
 </code></pre>
 <h2 id="_4">Деплоимся<a class="headerlink" href="#_4" title="Anchor link to this section for reference">#</a></h2>
-<pre><code>cd bobkinstret.github.io/
-mkdocs gh-deploy --config-file ../src/mkdocs.yml --remote-branch main
+<pre><code>git checkout -b gh-pages
+git push origin gh-pages
+git checkout main
+
+mkdocs gh-deploy --config-file ./src/mkdocs.yml --remote-branch gh-pages
 </code></pre>
 </section>
 

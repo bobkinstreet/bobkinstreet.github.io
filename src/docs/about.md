@@ -34,13 +34,12 @@ pip install mkdocs-terminal
 
 ## Создаем и первично настраиваем странички
 
-- Создаем проект в директории, которая содержит папку с репозиторием
+- Создаем mkdocs папку исходниками проекта прямо в репозитории в ветке main
 ```
-cd ../
 mkdocs new src
 ```
 
-- Первично кастомизируем mkdocs.yml
+- Первично кастомизируем [mkdocs.yml](https://raw.githubusercontent.com/bobkinstreet/bobkinstreet.github.io/refs/heads/main/src/mkdocs.yml)
 ```
 site_name: Бобкин стрит
 theme:
@@ -51,6 +50,7 @@ nav:
   - Об: about.md
 markdown_extensions:
   - def_lists
+# ...
 ```
 
 - Проверяем как выглядит
@@ -77,8 +77,9 @@ touch src/custom_dir/footer.html
 ```
 ## Деплоимся
 ```
-cd bobkinstret.github.io/
 git checkout -b gh-pages
 git push origin gh-pages
-mkdocs gh-deploy --config-file ../src/mkdocs.yml --remote-branch gh-pages
+git checkout main
+
+mkdocs gh-deploy --config-file ./src/mkdocs.yml --remote-branch gh-pages
 ```
