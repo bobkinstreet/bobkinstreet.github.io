@@ -8,28 +8,28 @@
     <meta name="generator" content="mkdocs-1.6.1, mkdocs-terminal-4.6.0">
      
      
-    <link rel="icon" type="image/png" sizes="192x192" href="img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
+<link rel="shortcut icon" type="image/png" sizes="48x48" href="../img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
 
 
     
  
-<title>Домашняя - Бобкин стрит</title>
+<title>Об - Бобкин стрит</title>
 
 
-<link href="css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-<link href="css/fontawesome/css/solid.min.css" rel="stylesheet">
-<link href="css/normalize.css" rel="stylesheet">
-<link href="css/terminal.css" rel="stylesheet">
-<link href="css/theme.css" rel="stylesheet">
-<link href="css/theme.tile_grid.css" rel="stylesheet">
-<link href="css/theme.footer.css" rel="stylesheet">
+<link href="../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../css/normalize.css" rel="stylesheet">
+<link href="../css/terminal.css" rel="stylesheet">
+<link href="../css/theme.css" rel="stylesheet">
+<link href="../css/theme.tile_grid.css" rel="stylesheet">
+<link href="../css/theme.footer.css" rel="stylesheet">
 <!-- default color palette -->
-<link href="css/palettes/default.css" rel="stylesheet">
+<link href="../css/palettes/default.css" rel="stylesheet">
 
 <!-- page layout -->
 <style>
@@ -60,20 +60,20 @@
 
     
     <!-- search css support -->
-<link href="css/search/bootstrap-modal.css" rel="stylesheet">
+<link href="../css/search/bootstrap-modal.css" rel="stylesheet">
 <!-- search scripts -->
 <script>
-    var base_url = ".",
+    var base_url = "..",
     shortcuts = "{}";
 </script>
-<script src="js/jquery/jquery-1.10.1.min.js" defer></script>
-<script src="js/bootstrap/bootstrap.min.js" defer></script>
-<script src="js/mkdocs/base.js" defer></script>
+<script src="../js/jquery/jquery-1.10.1.min.js" defer></script>
+<script src="../js/bootstrap/bootstrap.min.js" defer></script>
+<script src="../js/mkdocs/base.js" defer></script>
     
     
     
     
-    <script src="search/main.js"></script>
+    <script src="../search/main.js"></script>
     
 
     
@@ -91,7 +91,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="." class="menu-item active" property="item" typeof="WebPage">
+                    <a href=".." class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Домашняя</span>
                     </a>
                     <meta property="position" content="0">
@@ -99,7 +99,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="about/" class="menu-item " property="item" typeof="WebPage">
+                    <a href="./" class="menu-item active" property="item" typeof="WebPage">
                         <span property="name">Об</span>
                     </a>
                     <meta property="position" content="1">
@@ -136,9 +136,11 @@
     
     
         
-        <span class="
+        
+            <a class="
 
-    terminal-mkdocs-side-nav-item--active">Домашняя</span>
+    terminal-mkdocs-side-nav-item" href="..">Домашняя</a>
+        
     
     
     
@@ -153,11 +155,9 @@
     
     
         
-        
-            <a class="
+        <span class="
 
-    terminal-mkdocs-side-nav-item" href="about/">Об</a>
-        
+    terminal-mkdocs-side-nav-item--active">Об</span>
     
     
     
@@ -165,11 +165,76 @@
         
     </ul>
   
+</nav><hr>
+<nav>
+    <ul>
+        <li><a href="#_1">Как эта страничка сделана</a></li>
+        <li><a href="#ssh-github">Настройка ssh ключей github</a></li><li><a href="#_2">Создание репозитория</a></li><li><a href="#mkdocs">Установка mkdocs</a></li><li><a href="#_3">Создаем и первично настраиваем проект</a></li>
+    </ul>
 </nav>
 </aside>
             <main id="terminal-mkdocs-main-content">
 <section id="mkdocs-terminal-content">
-    <p>Уголок добра в интернете</p>
+    <h1 id="_1">Как эта страничка сделана</h1>
+<h2 id="ssh-github">Настройка ssh ключей github</h2>
+<ol>
+<li>Генерим ключ и копируем его публичную часть</li>
+</ol>
+<pre><code>cd ~
+ssh-keygen -t ed25519
+cat .ssh/id_ed25519.pub
+</code></pre>
+<ol start="2">
+<li>Новый ssh ключ добавляем сюда https://github.com/settings/keys</li>
+</ol>
+<h2 id="_2">Создание репозитория</h2>
+<ol>
+<li>Создаем новый репозиторий по инструкции для User or Organization (https://pages.github.com/)</li>
+</ol>
+<pre><code>git clone git@github.com:bobkinstreet/bobkinstreet.github.io.git
+cd bobkinstret.github.io/
+</code></pre>
+<ol start="2">
+<li>Создаем index.html, коммитим изменения</li>
+</ol>
+<pre><code>echo &quot;Ученье свет&quot; &gt; index.html
+git add .
+git commit -m 'initial'
+git push -u origin main
+</code></pre>
+<ol start="3">
+<li>После этого по адресу bobkinstreet.github.io будет доступен index.html. У меня страничка стала доступная только после второго коммита.</li>
+</ol>
+<h2 id="mkdocs">Установка mkdocs</h2>
+<p>Устанавливаем mkdocs и тему</p>
+<pre><code>pip install mkdocs
+pip install mkdocs-terminal
+</code></pre>
+<h2 id="_3">Создаем и первично настраиваем проект</h2>
+<ol>
+<li>Создаем проект в папке с репозиторием</li>
+</ol>
+<pre><code>cd ../
+mkdocs new ./
+</code></pre>
+<ol start="2">
+<li>Первично кастомизируем mkdocs.yml</li>
+</ol>
+<pre><code>site_name: Бобкин стрит
+theme:
+  name: terminal
+nav:
+  - Домашняя: index.md
+  - Об: about.md
+markdown_extensions:
+  - sane_lists
+</code></pre>
+<ol start="3">
+<li>Проверяем как выглядит</li>
+</ol>
+<pre><code>cd bobkinstret.github.io/
+mkdocs serve
+</code></pre>
 </section>
 
             </main>
